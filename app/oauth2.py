@@ -7,8 +7,9 @@ from jwt.exceptions import InvalidTokenError
 from . import schema
 from .database import SessionDep
 from . import models
-from .config import settings
+from .config import get_settings
 
+settings = get_settings()
 SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes

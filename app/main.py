@@ -1,7 +1,8 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .database import get_session, create_db_and_tables
+
+from .database import get_session
 from . import models # Don't delete because the tables won't create
 from .routers import posts, users, auth, votes
 

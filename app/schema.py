@@ -1,6 +1,5 @@
 import datetime
-from pydantic import BaseModel, EmailStr, Field
-
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 """
 pydantic
@@ -27,8 +26,7 @@ class UserOut(BaseModel):
     created_at: datetime.datetime
 
     """ So that it can convert sqlalchemy models into pydantic models"""
-    class Config:
-        orm_model = True
+    model_config = ConfigDict(from_attributes=True)
 
 class PostBase(BaseModel):
     title: str
@@ -46,8 +44,7 @@ class Post(PostBase):
     created_at: datetime.datetime
 
     """ So that it can convert sqlalchemy models into pydantic models"""
-    class Config:
-        orm_model = True
+    model_config = ConfigDict(from_attributes=True)
 
 class PostOut(BaseModel):
     post: Post

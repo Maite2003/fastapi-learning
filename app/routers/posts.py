@@ -108,5 +108,5 @@ def update_post(id : int, post: schema.PostCreate, db: SessionDep, current_user:
 
     db.commit()
 
-    return post_query.first()
+    return db.scalar(post_query)
 

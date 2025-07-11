@@ -1,4 +1,5 @@
-from pydantic_settings import BaseSettings
+from functools import lru_cache
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     database_hostname: str
@@ -10,8 +11,8 @@ class Settings(BaseSettings):
     algorithm: str
     access_token_expire_minutes: int = 30
 
-    class Config:
-        env_file= ".env"
+    model_config = SettingsConfigDict(env_file=".env")
 
-
-settings = Settings()
+@lru_cache
+def get_settings():
+    return Settings()
