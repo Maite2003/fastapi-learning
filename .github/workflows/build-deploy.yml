@@ -53,7 +53,7 @@ jobs:
             - name: Create test database
               run: |
                 sudo apt-get install -y postgresql-client
-                PGPASSWORD=${{ secrets.DATABASE_PASSWORD }} createdb -h localhost -p 5432 -U ${{ secrets.DATABASE_USERNAME }} ${{ secrets.DATABASE_NAME }}
+                PGPASSWORD=${{ secrets.DATABASE_PASSWORD }} createdb -h ${{secrets.DATABASE_HOSTNAME}} -p ${{secrets.DATABASE_PORT}} -U ${{ secrets.DATABASE_USERNAME }} ${{ secrets.DATABASE_NAME }}_test
             - name: Tests with Pytest
               run: |
                 pip install pytest
